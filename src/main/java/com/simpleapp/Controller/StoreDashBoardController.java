@@ -32,4 +32,9 @@ public class StoreDashBoardController {
         dashBoardService.addItemToBasket(item);
     }
 
+    @RequestMapping(method = RequestMethod.DELETE, value = ("/deleteItem/{itemId}"))
+    public void deleteItemFromBasket(@PathVariable String itemId){
+        dashBoardService.deleteItem(itemId);
+    }
+
 }

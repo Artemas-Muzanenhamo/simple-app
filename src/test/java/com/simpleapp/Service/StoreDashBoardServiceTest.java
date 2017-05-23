@@ -3,14 +3,12 @@ package com.simpleapp.Service;
 import com.simpleapp.Model.Item;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by amuzanenhamo on 17/05/2017.
@@ -20,7 +18,7 @@ import static org.junit.Assert.assertTrue;
 @AutoConfigureMockMvc
 public class StoreDashBoardServiceTest {
 
-    @Autowired
+    @InjectMocks
     private StoreDashBoardService dashBoardService;
 
     private Item item;
@@ -42,7 +40,7 @@ public class StoreDashBoardServiceTest {
     }
 
     @Test
-    public void whenAValidItemIsPassedThenAddToTheList() throws Exception {
+    public void whenAValidListItemIsPassedThenAddToTheList() throws Exception {
 
         item = new Item("apples", "Apples", "another fruit", "Fruit");
 
@@ -73,4 +71,17 @@ public class StoreDashBoardServiceTest {
 
         assertEquals("Orange", dashBoardService.getBasketById("orange").getName());
     }
+
+    @Test
+    public void whenAListIsDeletedFromTheListThenReturnTheListMinusTheItem() throws Exception {
+
+        String id = "orange";
+
+        dashBoardService.deleteItem(id);
+
+        assertEquals(1, dashBoardService.getBasket().size());
+
+    }
+
+
 }

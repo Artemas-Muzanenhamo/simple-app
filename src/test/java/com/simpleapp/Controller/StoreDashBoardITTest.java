@@ -4,6 +4,7 @@ import com.simpleapp.Service.StoreDashBoardService;
 import net.minidev.json.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,7 +31,7 @@ public class StoreDashBoardITTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
+    @InjectMocks
     private StoreDashBoardService dashBoardService;
 
     /**
@@ -99,6 +100,14 @@ public class StoreDashBoardITTest {
 
         mockMvc.perform(MockMvcRequestBuilders.post("/addItems").contentType(MediaType.APPLICATION_JSON_UTF8).content(jsonObject.toJSONString()))
         .andExpect(status().isOk());
+    }
+
+    @Test
+    public void deleteItemInBasketReturningStatus200IsOk() throws Exception {
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/deleteItem/orange"))
+                .andExpect(status().isOk());
+
     }
 
 }

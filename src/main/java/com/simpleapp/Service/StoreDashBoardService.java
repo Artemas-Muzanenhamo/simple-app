@@ -57,4 +57,9 @@ public class StoreDashBoardService {
             return new Item("", "", "", "");
 
     }
+
+    public void deleteItem(String id) {
+
+        list.removeIf(t -> t.getId().equals(id));
+    }
 }
