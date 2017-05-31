@@ -103,7 +103,7 @@ public class StoreDashBoardITTest {
     }
 
     @Test
-    public void deleteItemInBasketReturningStatus200IsOk() throws Exception {
+    public void removeItemInBasketReturningStatus200IsOk() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.delete("/deleteItem/orange"))
                 .andExpect(status().isOk());
