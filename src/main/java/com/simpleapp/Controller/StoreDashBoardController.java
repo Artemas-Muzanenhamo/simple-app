@@ -16,6 +16,7 @@ public class StoreDashBoardController {
     @Autowired
     StoreDashBoardService dashBoardService;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping("/basket")
     public List<Item> showBasket() {
 
