@@ -1,10 +1,15 @@
 package com.simpleapp.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * Created by amuzanenhamo on 14/05/2017.
  */
+@Entity
 public class Item {
 
+    @Id
     private String id;
     private String name;
     private String description;
