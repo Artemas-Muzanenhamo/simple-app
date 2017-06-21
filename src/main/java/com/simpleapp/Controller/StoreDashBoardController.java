@@ -22,29 +22,29 @@ public class StoreDashBoardController {
      */
 
     @Autowired
-    ShoppingAppService shoppingAppService;
+    ShoppingAppService shoppingAppServiceImpl;
 
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping("/basket")
     public List<Item> showBasket() {
 
-        return shoppingAppService.getBasket();
+        return shoppingAppServiceImpl.getBasket();
     }
 
     @RequestMapping("/basket/item/{itemId}")
     public Item item(@PathVariable String itemId){
-        return shoppingAppService.getBasketById(itemId);
+        return shoppingAppServiceImpl.getBasketById(itemId);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = ("/addItems"))
     public void addItemToBasket(@RequestBody Item item){
-        shoppingAppService.addItemToBasket(item);
+        shoppingAppServiceImpl.addItemToBasket(item);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = ("/deleteItem/{itemId}"))
     public void deleteItemFromBasket(@PathVariable String itemId){
-        shoppingAppService.deleteItem(itemId);
+        shoppingAppServiceImpl.deleteItem(itemId);
     }
 
 }

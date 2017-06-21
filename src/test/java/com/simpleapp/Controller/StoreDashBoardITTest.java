@@ -31,9 +31,6 @@ public class StoreDashBoardITTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @InjectMocks
-    private StoreDashBoardService dashBoardService;
-
     /**
      * GET
      */
@@ -70,9 +67,9 @@ public class StoreDashBoardITTest {
 
         JSONObject jsonObject = new JSONObject(map);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/basket/item/orange"))
-                .andExpect(status().isOk())
-                .andExpect(content().json(jsonObject.toJSONString()));
+        mockMvc.perform(MockMvcRequestBuilders.get("/basket/item/orange").contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(jsonObject.toJSONString()))
+                .andExpect(status().isOk());
     }
 
     /**
@@ -105,8 +102,31 @@ public class StoreDashBoardITTest {
     @Test
     public void removeItemInBasketReturningStatus200IsOk() throws Exception {
 
+        addItemInDatabase();
+
         mockMvc.perform(MockMvcRequestBuilders.delete("/deleteItem/orange"))
                 .andExpect(status().isOk());
+
+    }
+
+
+    /**
+     * Method setup to include some data in the temporary test DB
+     *
+     * @throws Exception
+     */
+    public void addItemInDatabase() throws Exception{
+
+        Map<String, String> map = new HashMap<>();
+        map.put("id", "orange");
+        map.put("name", "Orange");
+        map.put("description", "Citric Fruit");
+        map.put("category", "Fruit");
+
+        JSONObject jsonObject = new JSONObject(map);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/addItems")
+        .contentType(MediaType.APPLICATION_JSON_UTF8).content(jsonObject.toJSONString()));
 
     }
 

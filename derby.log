@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Fri Jun 02 11:25:37 BST 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015c-6856-cb81-00000cd60478 
-on database directory memory:/Users/amuzanenhamo/git-projects/simple-application/testdb with class loader java.net.URLClassLoader@4c1cebdd 
+Sun Jun 11 09:43:10 BST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015c-9652-39af-000004fb1c20 
+on database directory memory:/Users/amuzanenhamo/git_projects/simple-app/testdb with class loader java.net.URLClassLoader@63024f08 
 Loaded from file:/Users/amuzanenhamo/.m2/repository/org/apache/derby/derby/10.13.1.1/derby-10.13.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_66-b17
-user.dir=/Users/amuzanenhamo/git-projects/simple-application
+java.runtime.version=1.8.0_65-b17
+user.dir=/Users/amuzanenhamo/git_projects/simple-app
 os.name=Mac OS X
 os.arch=x86_64
-os.version=10.12.3
+os.version=10.12.5
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
