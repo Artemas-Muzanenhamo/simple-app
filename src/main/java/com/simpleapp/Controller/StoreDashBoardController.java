@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * Created by amuzanenhamo on 16/05/2017.
  */
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class StoreDashBoardController {
 
@@ -24,8 +25,6 @@ public class StoreDashBoardController {
     @Autowired
     ShoppingAppService shoppingAppServiceImpl;
 
-
-    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping("/basket")
     public List<Item> showBasket() {
 
@@ -37,7 +36,6 @@ public class StoreDashBoardController {
         return shoppingAppServiceImpl.getBasketById(itemId);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(method = RequestMethod.POST, value = ("/addItems"))
     public void addItemToBasket(@RequestBody Item item){
         shoppingAppServiceImpl.addItemToBasket(item);
