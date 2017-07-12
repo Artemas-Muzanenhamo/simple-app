@@ -37,6 +37,7 @@ public class StoreDashBoardController {
         return shoppingAppServiceImpl.getBasketById(itemId);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(method = RequestMethod.POST, value = ("/addItems"))
     public void addItemToBasket(@RequestBody Item item){
         shoppingAppServiceImpl.addItemToBasket(item);
