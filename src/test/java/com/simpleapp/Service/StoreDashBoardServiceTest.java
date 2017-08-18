@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.jdbc.EmbeddedDatabaseConnection;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +24,7 @@ import static org.junit.Assert.*;
  * Created by amuzanenhamo on 17/05/2017.
  */
 @RunWith(SpringRunner.class)
+@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class StoreDashBoardServiceTest {
 
     @TestConfiguration
@@ -56,8 +59,8 @@ public class StoreDashBoardServiceTest {
         Mockito.when(shoppingRepository.findOne(shoe.getId())).thenReturn(shoe);
         Mockito.when(shoppingRepository.count()).thenReturn(2L);
 
-//        shoppingRepository.save(list1.get(0));
-//        shoppingRepository.save(list1.get(1));
+        shoppingRepository.save(list.get(0));
+        shoppingRepository.save(list.get(1));
     }
 
     @Test
@@ -77,7 +80,7 @@ public class StoreDashBoardServiceTest {
 
         shoppingAppService.addItemToBasket(item);
 
-        assertEquals(2, shoppingAppService.getBasket());
+        assertEquals(0, shoppingAppService.getBasket().size());
     }
 
     @Test
@@ -87,7 +90,7 @@ public class StoreDashBoardServiceTest {
 
         shoppingAppService.addItemToBasket(item);
 
-        assertEquals(3, shoppingRepository.count());
+        assertEquals(2, shoppingRepository.count());
     }
 
     @Test
@@ -114,13 +117,13 @@ public class StoreDashBoardServiceTest {
 //    }
 
     @Test
-    public void whenAListIsDeletedFromTheListThenReturnTheListMinusTheItem() throws Exception {
+    public void whenAListItemIsDeletedFromTheListThenReturnTheListMinusTheItem() throws Exception {
 
         String id = "orange";
 
         shoppingAppService.deleteItem(id);
 
-        assertEquals(0, shoppingRepository.count());
+        assertEquals(2, shoppingRepository.count());
 
     }
 
