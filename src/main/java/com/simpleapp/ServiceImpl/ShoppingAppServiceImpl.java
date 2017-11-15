@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Artemas on 13/06/2017.
@@ -33,9 +34,7 @@ public class ShoppingAppServiceImpl implements ShoppingAppService{
     public List<Item> getBasket(){
 
         List<Item> list = new ArrayList<>();
-        if (shoppingRepository.findAll() != null) {
-            shoppingRepository.findAll().forEach(list :: add);
-        }
+        shoppingRepository.findAll().forEach(list :: add);
 
         return list;
     }
@@ -43,8 +42,11 @@ public class ShoppingAppServiceImpl implements ShoppingAppService{
 
     public void addItemToBasket(Item item) {
 
-        if (item != null){
-            if (!item.getId().equals("")){
+
+        Optional<Item> itemOptional = Optional.ofNullable(item);
+
+        if (itemOptional.isPresent()){
+            if (!itemOptional.get().getId().equals("id")){
                 shoppingRepository.save(item);
             }
         }
@@ -67,6 +69,10 @@ public class ShoppingAppServiceImpl implements ShoppingAppService{
 
     public void deleteItem(String id) {
 
-        shoppingRepository.delete(id);
+        Optional<String> itemOptional = Optional.ofNullable(id);
+
+        if (itemOptional.isPresent()){
+            shoppingRepository.delete(id);
+        }
     }
 }
