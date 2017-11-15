@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
  */
 @DataJpaTest
 @RunWith(SpringRunner.class)
-public class StoreDashBoardRepositoryTest {
+public class ShoppingRepositoryTest {
 
     @Autowired
     private ShoppingRepository shoppingRepository;
