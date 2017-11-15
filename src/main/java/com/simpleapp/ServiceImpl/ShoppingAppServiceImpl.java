@@ -22,29 +22,15 @@ public class ShoppingAppServiceImpl implements ShoppingAppService{
     @Autowired
     ShoppingRepository shoppingRepository;
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    private List<Item> list1 = new ArrayList<>(Arrays.asList(
-
-            new Item("orange", "Orange", "Citric Fruit", "Fruit"),
-            new Item("jordan5", "Nike Air Jordan V5", "Basketball shoes", "Footwear")
-
-    ));
-
     public List<Item> getBasket(){
-
         List<Item> list = new ArrayList<>();
         shoppingRepository.findAll().forEach(list :: add);
-
         return list;
     }
 
 
     public void addItemToBasket(Item item) {
-
-
         Optional<Item> itemOptional = Optional.ofNullable(item);
-
         if (itemOptional.isPresent()){
             if (!itemOptional.get().getId().equals("id")){
                 shoppingRepository.save(item);
@@ -54,9 +40,9 @@ public class ShoppingAppServiceImpl implements ShoppingAppService{
 
 
     public Item getBasketById(String id) {
-
-        if (id != null){
-            if (id.length() > 0){
+        Optional<String> idOptional = Optional.ofNullable(id);
+        if (idOptional.isPresent()){
+            if (idOptional.get().length() > 0){
                 return shoppingRepository.findOne(id);
             }else{
                 return new Item("", "", "", "");
@@ -68,9 +54,7 @@ public class ShoppingAppServiceImpl implements ShoppingAppService{
     }
 
     public void deleteItem(String id) {
-
         Optional<String> itemOptional = Optional.ofNullable(id);
-
         if (itemOptional.isPresent()){
             shoppingRepository.delete(id);
         }
