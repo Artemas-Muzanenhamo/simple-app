@@ -1,2 +1,4 @@
-.idea
 simple-application.iml
+/derby.log
+/target/
+/.idea/
