@@ -26,7 +26,7 @@ import static org.junit.Assert.*;
  */
 @DataJpaTest
 @RunWith(SpringRunner.class)
-public class StoreDashBoardServiceTest {
+public class StoreDashBoardRepositoryTest {
 
     @Autowired
     private ShoppingRepository shoppingRepository;
